@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  mongodb:
+    # Use the official MongoDB image from Docker Hub
+    image: mongo:8.0.9
+    # Map port 27017 from the container to port 27017 on the host
+    ports:
+      - "27017:27017"
+    # Define environment variables for MongoDB authentication
+    environment:
+      # Set the root username for MongoDB
+      MONGO_INITDB_ROOT_USERNAME: root
+      # Set the root password for MongoDB
+      MONGO_INITDB_ROOT_PASSWORD: password
+    # Define a volume to persist MongoDB data, so it's not lost when the container is stopped
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:8.2-rc1-alpine
+    ports:
+      - "6379:6379"
+
+# Define named volumes that Docker will manage
+volumes:
+  mongodb_data:
+  # This creates a persistent volume named 'mongodb_data'
+  # Docker will manage where this data is stored on your host system.
