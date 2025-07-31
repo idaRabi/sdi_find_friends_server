@@ -23,6 +23,14 @@ services:
     ports:
       - "6379:6379"
 
+  tileserver:
+    image: maptiler/tileserver-gl:latest
+    ports:
+      - "8090:8080"
+    volumes:
+      - ../data/mbtiles:/data
+    entrypoint: ["tileserver", "--public_url", "http://localhost:8090"]
+
 # Define named volumes that Docker will manage
 volumes:
   mongodb_data:

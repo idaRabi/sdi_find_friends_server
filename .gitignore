@@ -6,6 +6,8 @@ target/
 !**/src/test/**/target/
 
 
+
+data/mbtiles/
 ### STS ###
 .apt_generated
 .classpath
